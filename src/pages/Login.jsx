@@ -71,7 +71,7 @@ class Login extends Component {
 
             <button
               data-testid="btn-play"
-              className="w-48 h-10 mt-4 rounded-md bg-zinc-500 text-white font-bold hover:bg-zinc-600 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-zinc-500"
+              className="w-48 h-10 mt-4 rounded-md bg-lime-500 transition duration-150 ease-in text-white font-bold hover:bg-lime-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-lime-500"
               type="button"
               disabled={ !emailRegex.test(email) || name.length < 1 }
               onClick={ this.handleSubmit }
@@ -84,7 +84,7 @@ class Login extends Component {
           <button
             type="button"
             data-testid="btn-settings"
-            className="w-24 h-10 mt-4 rounded-md bg-zinc-500 text-white font-bold hover:bg-zinc-600"
+            className="w-24 h-10 mt-4 rounded-md bg-zinc-500 transition duration-150 ease-in text-white font-bold hover:bg-zinc-600"
             onClick={ () => history.push('/settings') }
           >
             Settings
@@ -92,7 +92,7 @@ class Login extends Component {
           <button
             type="button"
             data-testid="btn-ranking"
-            className="w-24 h-10 mt-4 ml-4 rounded-md bg-zinc-500 text-white font-bold hover:bg-zinc-600"
+            className="w-24 h-10 mt-4 ml-4 rounded-md bg-zinc-500 transition duration-150 ease-in text-white font-bold hover:bg-zinc-600"
             onClick={ () => history.push('/ranking') }
           >
             Ranking

@@ -1,3 +1,6 @@
+/* eslint-disable max-len */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/jsx-max-depth */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/no-danger */
 import React, { Component } from 'react';
@@ -54,26 +57,36 @@ class Settings extends Component {
     const { categories, numberOfQuestions, category, difficulty, type } = this.state;
     const { history } = this.props;
     return (
-      <div>
-        <h1 data-testid="settings-title">Settings</h1>
+      <div className="flex flex-col items-center justify-center h-screen bg-zinc-900 text-white">
+        <h1 data-testid="settings-title" className="text-4xl font-bold mb-4">
+          Settings
+        </h1>
         <form action="#">
-          <label htmlFor="number-of-questions">
-            Number of Questions:
+          <div className="flex flex-col items-center">
+            <label
+              htmlFor="number-of-questions"
+              className="text-xl mb-2 font-bold"
+            >
+              Number of Questions:
+            </label>
             <input
               type="number"
               name="numberOfQuestions"
               id="number-of-questions"
               data-testid="question-input-number"
+              className="w-48 h-10 mb-2 rounded-md text-black text-center font-bold focus:outline-none focus:ring-2 focus:ring-zinc-500"
               onChange={ this.handleChange }
               value={ numberOfQuestions }
             />
-          </label>
-          <label htmlFor="category">
-            Category:
+
+            <label htmlFor="category" className="text-xl mb-2 font-bold">
+              Category:
+            </label>
             <select
               name="category"
               id="category"
               data-testid="question-category-select"
+              className="w-48 h-10 mb-2 rounded-md text-black text-center font-bold focus:outline-none focus:ring-2 focus:ring-zinc-500"
               onChange={ this.handleChange }
               value={ category }
             >
@@ -84,13 +97,15 @@ class Settings extends Component {
                 </option>
               ))}
             </select>
-          </label>
-          <label htmlFor="difficulty">
-            Difficulty:
+
+            <label htmlFor="difficulty" className="text-xl mb-2 font-bold">
+              Difficulty:
+            </label>
             <select
               name="difficulty"
               id="difficulty"
               data-testid="question-difficulty-select"
+              className="w-48 h-10 mb-2 rounded-md text-black text-center font-bold focus:outline-none focus:ring-2 focus:ring-zinc-500"
               onChange={ this.handleChange }
               value={ difficulty }
             >
@@ -99,13 +114,15 @@ class Settings extends Component {
               <option value="medium">Médio</option>
               <option value="hard">Difícil</option>
             </select>
-          </label>
-          <label htmlFor="type">
-            Type:
+
+            <label htmlFor="type" className="text-xl mb-2 font-bold">
+              Type:
+            </label>
             <select
               name="type"
               id="type"
               data-testid="question-type-select"
+              className="w-48 h-10 mb-2 rounded-md text-black text-center font-bold focus:outline-none focus:ring-2 focus:ring-zinc-500"
               onChange={ this.handleChange }
               value={ type }
             >
@@ -113,21 +130,27 @@ class Settings extends Component {
               <option value="multiple">Múltipla Escolha</option>
               <option value="boolean">Verdadeiro ou Falso</option>
             </select>
-          </label>
-          <button
-            type="button"
-            data-testid="btn-add-settings"
-            onClick={ this.handleSubmit }
-          >
-            Save Settings
-          </button>
-          <button
-            type="button"
-            data-testid="btn-goBack-settings"
-            onClick={ () => history.push('/') }
-          >
-            Go Back
-          </button>
+          </div>
+
+          <div className="flex justify-center">
+            <button
+              type="button"
+              data-testid="btn-add-settings"
+              className="bg-lime-500 hover:bg-lime-700 transition duration-150 ease-in text-white font-bold py-2 px-4 rounded-md mt-4 mr-4"
+              onClick={ this.handleSubmit }
+            >
+              Save Settings
+            </button>
+
+            <button
+              type="button"
+              data-testid="btn-goBack-settings"
+              className="bg-zinc-500 hover:bg-zinc-700 transition duration-150 ease-in text-white font-bold py-2 px-4 rounded-md mt-4"
+              onClick={ () => history.push('/') }
+            >
+              Go Back
+            </button>
+          </div>
         </form>
       </div>
     );
