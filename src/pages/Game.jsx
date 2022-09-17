@@ -1,3 +1,5 @@
+/* eslint-disable max-lines */
+/* eslint-disable max-len */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/no-danger */
 import React, { Component } from 'react';
@@ -123,83 +125,108 @@ class Game extends Component {
     return (
       <div>
         <Header />
-        <div className="game-timer">
-          <span>Time: </span>
-          <span data-testid="question-timer">{timer}</span>
-        </div>
-        <div>
-          <button
-            type="button"
-            onClick={ () => {
-              history.push('/');
-              resetStateAction();
-            } }
-          >
-            Cancel
-          </button>
-        </div>
-        {questions?.length > 0 ? (
-          <div>
-            {questions[actualQuestion] && (
-              <div>
-                <h1 data-testid="question-category">
-                  {questions[actualQuestion].category}
-                </h1>
-                <h2
-                  data-testid="question-text"
-                  dangerouslySetInnerHTML={ {
-                    __html: questions[actualQuestion].question,
-                  } }
-                />
-                <div data-testid="answer-options">
-                  {questions[actualQuestion].answers.map((answer, index) => (
-                    <button
-                      key={ index }
-                      type="button"
-                      data-testid={
-                        questions[actualQuestion].correct_answer === answer
-                          ? 'correct-answer'
-                          : `wrong-answer-${index}`
-                      }
-                      dangerouslySetInnerHTML={ { __html: answer } }
-                      aria-label="answer"
-                      style={
-                        answered
-                          ? {
-                            border:
-                                questions[actualQuestion].correct_answer
-                                === answer
-                                  ? '3px solid rgb(6, 240, 15)'
-                                  : '3px solid red',
-                          }
-                          : {}
-                      }
-                      disabled={ answered }
-                      onClick={ () => {
-                        this.handleAnswer(answer);
-                      } }
-                    />
-                  ))}
-                </div>
-                {answered && (
-                  <button
-                    type="button"
-                    data-testid="btn-next"
-                    onClick={ this.nextQuestion }
-                  >
-                    Next
-                  </button>
-                )}
+        <div className="flex flex-col items-center bg-gray-800 text-white h-screen">
+          <div className="mt-4">
+            <button
+              type="button"
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+              onClick={ () => {
+                history.push('/');
+                resetStateAction();
+              } }
+            >
+              Cancel game
+            </button>
+          </div>
+          {questions?.length > 0 ? (
+            <div
+              className="flex flex-col items-center bg-gray-800 text-white h-screen"
+              data-testid="question"
+            >
+              <div className="mt-4 mb-4">
+                <span
+                  data-testid="question-timer"
+                  className="text-2xl font-bold"
+                >
+                  {`Timer: ${timer}`}
+                </span>
               </div>
-            )}
-          </div>
-        ) : (
-          <div>
-            <h1>
-              No questions found. Please, try again with different settings.
-            </h1>
-          </div>
-        )}
+              {questions[actualQuestion] && (
+                <div className="flex flex-col">
+                  <span
+                    data-testid="question-category"
+                    className="text-lg text-center mb-4"
+                  >
+                    {`Category: ${questions[actualQuestion].category}`}
+                  </span>
+                  <span
+                    data-testid="question-text"
+                    className="text-xl mb-4 mx-4"
+                    dangerouslySetInnerHTML={ {
+                      __html: questions[actualQuestion].question,
+                    } }
+                  />
+                  <div
+                    data-testid="answer-options"
+                    className="flex flex-col items-center gap-2"
+                  >
+                    {questions[actualQuestion].answers.map((answer, index) => (
+                      <button
+                        key={ index }
+                        type="button"
+                        data-testid={
+                          questions[actualQuestion].correct_answer === answer
+                            ? 'correct-answer'
+                            : `wrong-answer-${index}`
+                        }
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out w-1/2 mx-auto "
+                        dangerouslySetInnerHTML={ { __html: answer } }
+                        aria-label="answer"
+                        style={
+                          answered
+                            ? {
+                              border:
+                                  questions[actualQuestion].correct_answer
+                                  === answer
+                                    ? '3px solid rgb(6, 240, 15)'
+                                    : '3px solid red',
+                            }
+                            : {}
+                        }
+                        disabled={ answered }
+                        onClick={ () => {
+                          this.handleAnswer(answer);
+                        } }
+                      />
+                    ))}
+                  </div>
+                  {answered && (
+                    <button
+                      type="button"
+                      data-testid="btn-next"
+                      className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out mt-4"
+                      onClick={ this.nextQuestion }
+                    >
+                      Next
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+          ) : (
+            <div
+              data-testid="loading"
+              className="flex flex-col items-center h-full"
+            >
+              <h1
+                data-testid="loading"
+                className="text-2xl font-bold text-center mt-4"
+              >
+                No questions found. Please, try again with different settings.
+              </h1>
+            </div>
+          )}
+        </div>
       </div>
     );
   }
