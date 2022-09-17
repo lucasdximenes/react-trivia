@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
@@ -12,17 +13,28 @@ class Feedback extends Component {
     return (
       <div>
         <Header />
-        <div>
-          <h1 data-testid="feedback-text">
+        <div className="flex flex-col items-center h-screen bg-gray-800 text-white">
+          <span data-testid="feedback-text" className="text-2xl font-bold mt-4">
             {assertions >= MINIMUM_ASSERTIONS
               ? 'Well Done!'
               : 'Could be better...'}
-          </h1>
-          <h2 data-testid="feedback-total-score">{score}</h2>
-          <h2 data-testid="feedback-total-question">{assertions}</h2>
+          </span>
+          <span
+            data-testid="feedback-total-score"
+            className="text-2xl font-bold mt-4"
+          >
+            {`Score: ${score}`}
+          </span>
+          <span
+            data-testid="feedback-total-question"
+            className="text-2xl font-bold mt-4"
+          >
+            {`Questions correct: ${assertions}`}
+          </span>
           <button
             type="button"
             data-testid="btn-play-again"
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out mt-4"
             onClick={ () => {
               resetStateAction();
               history.push('/');
@@ -33,6 +45,7 @@ class Feedback extends Component {
           <button
             type="button"
             data-testid="btn-ranking"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out mt-4"
             onClick={ () => {
               history.push('/ranking');
             } }
